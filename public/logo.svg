@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 150" width="400" height="150">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1B4332;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2D6A4F;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D4A843;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E3C16F;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Icon / Monogram -->
+  <g transform="translate(20, 25)">
+    <!-- Shield Background -->
+    <path d="M50 0 L100 20 L100 60 C100 85 75 100 50 100 C25 100 0 85 0 60 L0 20 Z" fill="url(#grad1)" />
+    <!-- Fence Posts Motif inside Shield -->
+    <rect x="25" y="30" width="12" height="40" rx="2" fill="url(#grad2)" />
+    <rect x="44" y="20" width="12" height="50" rx="2" fill="url(#grad2)" />
+    <rect x="63" y="30" width="12" height="40" rx="2" fill="url(#grad2)" />
+    <!-- Horizontal rail -->
+    <rect x="15" y="45" width="70" height="8" rx="1" fill="#ffffff" opacity="0.9" />
+  </g>
+  
+  <!-- Text -->
+  <g transform="translate(140, 75)">
+    <text x="0" y="0" font-family="'Montserrat', sans-serif" font-weight="800" font-size="52" fill="#1B4332" letter-spacing="-1">AB</text>
+    <text x="85" y="0" font-family="'Montserrat', sans-serif" font-weight="800" font-size="52" fill="#1C1C1C" letter-spacing="-1">FENCING</text>
+    <text x="4" y="30" font-family="'Inter', sans-serif" font-weight="500" font-size="16" fill="#6C757D" letter-spacing="3">WALLINGTON</text>
+  </g>
+</svg>
