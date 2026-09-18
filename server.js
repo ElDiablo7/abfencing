@@ -132,6 +132,7 @@ app.post('/api/quote', async (req, res) => {
   }
 });
 
+app.get('/health', (req, res) => res.json({ ok: true, service: 'ab-fencing' }));
 app.get('/privacy', (req, res) => res.sendFile(path.join(__dirname, 'public', 'privacy.html')));
 app.get('/robots.txt', (req, res) => res.sendFile(path.join(__dirname, 'public', 'robots.txt')));
 app.get('/sitemap.xml', (req, res) => {
