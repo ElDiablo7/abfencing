@@ -4,7 +4,7 @@ A Railway-ready Node/Express website for AB Fencing, Wallington & surrounding Su
 
 ## Included
 - AB Fencing navy / electric-blue visual system based on supplied signage artwork.
-- Supplied signage images in `public/assets/`.
+- AB-branded artwork in `public/assets/`.
 - Responsive marketing site with services, customer feedback, quote enquiry form and click-to-call CTAs.
 - AI website assistant at `/api/assistant` using the OpenAI Responses API when `OPENAI_API_KEY` is configured.
 - Graceful fallback message when AI credentials are not configured.
