@@ -27,3 +27,26 @@ $('#quote').addEventListener('submit',async e=>{
   status.textContent=data.message;form.reset();
  }catch(err){status.textContent=err.message||'Please call 07539 490180 to arrange your enquiry.';status.style.color='#9b1c1c'}
 });
+
+/* Scroll reveal + subtle 3D pointer interaction */
+const revealItems=document.querySelectorAll('.services article,.reviews blockquote');
+if('IntersectionObserver' in window){
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target)}
+    });
+  },{threshold:.14});
+  revealItems.forEach(el=>observer.observe(el));
+}else{revealItems.forEach(el=>el.classList.add('in-view'));}
+
+const heroImage=document.querySelector('.hero-img');
+if(heroImage && window.matchMedia('(hover: hover) and (pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const image=heroImage.querySelector('img');
+  heroImage.addEventListener('pointermove',event=>{
+    const r=heroImage.getBoundingClientRect();
+    const x=(event.clientX-r.left)/r.width-.5;
+    const y=(event.clientY-r.top)/r.height-.5;
+    image.style.transform=`rotateY(${x*-7}deg) rotateX(${y*5}deg) translateY(-6px) scale(1.012)`;
+  });
+  heroImage.addEventListener('pointerleave',()=>{image.style.transform='';});
+}
