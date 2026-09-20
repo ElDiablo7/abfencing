@@ -27,7 +27,7 @@ export default function AboutPage() {
               {/* Replace with actual team/van photo */}
               <Image 
                 src="/images/about-team.jpg" 
-                alt="AB Fencing Team at Work" 
+                alt="AB Fencing Expert Craftsmanship" 
                 fill 
                 className="object-cover"
               />
