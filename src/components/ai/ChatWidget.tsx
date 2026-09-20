@@ -54,8 +54,7 @@ export default function ChatWidget() {
       } else {
         setMessages([...newMessages, { role: "assistant", content: "Sorry, I'm having trouble connecting right now." }]);
       }
-    } catch (error) {
-      console.error("Chat error:", error);
+    } catch {
       setMessages([...newMessages, { role: "assistant", content: "An error occurred while sending your message." }]);
     } finally {
       setIsLoading(false);
