@@ -4,8 +4,8 @@ import { CheckCircle } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us | AB Fencing",
-  description: "Learn about AB Fencing, a family-run fencing business in Wallington with over 20 years of experience serving the Southeast.",
+  title: "About Us | AB Fencing Ltd",
+  description: "Learn about AB Fencing Ltd, a family-run fencing business in Wallington with over 20 years of experience serving the Southeast.",
 };
 
 export default function AboutPage() {

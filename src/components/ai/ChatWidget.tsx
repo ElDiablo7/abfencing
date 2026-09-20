@@ -9,7 +9,16 @@ type Message = {
   content: string;
 };
 
-const INITIAL_GREETING = "Hello! I'm Sarah, the virtual assistant for AB Fencing. I can help you arrange a free quote, answer questions about our services, or put you directly in touch with Scott. How can I assist you today?";
+const INITIAL_GREETING = "Hello! I'm Sarah, the virtual assistant for AB Fencing Ltd. I can help you arrange a free quote, answer questions about our services, or put you directly in touch with Scott. How can I assist you today?";
+
+const PRESET_PROMPTS = [
+  "I need a price quote",
+  "What areas do you cover?",
+  "Do you do fence repairs?",
+  "How quickly can you start?",
+  "Can you install custom gates?",
+  "Do you remove the old fence?"
+];
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,6 +64,16 @@ export default function ChatWidget() {
     }
   }, []);
 
+  const unlockAudio = () => {
+    // Safari requires speech to be triggered synchronously within a user event (click/touch).
+    // This empty utterance unlocks the audio engine for subsequent async calls.
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      const unlock = new SpeechSynthesisUtterance('');
+      unlock.volume = 0;
+      window.speechSynthesis.speak(unlock);
+    }
+  };
+
   const speak = (text: string) => {
     if (!isVoiceEnabled || typeof window === 'undefined' || !('speechSynthesis' in window)) return;
     
@@ -71,7 +90,7 @@ export default function ChatWidget() {
       selectedVoice = voices.find(v => v.lang === 'en-GB' && v.name.includes('Natural') && v.name.includes('Female'));
     }
     
-    // 3. Third priority: Apple's Premium/Enhanced female voices
+    // 3. Third priority: Apple's Premium/Enhanced female voices (Great for Safari)
     if (!selectedVoice) {
       selectedVoice = voices.find(v => v.lang === 'en-GB' && (v.name.includes('Premium') || v.name.includes('Enhanced')) && v.name.includes('Female'));
     }
@@ -95,19 +114,21 @@ export default function ChatWidget() {
   };
 
   const handleOpen = () => {
+    unlockAudio();
     setIsOpen(true);
-    // Speak the greeting if we haven't yet, and if the user interacts (browsers require interaction first)
+    // Speak the greeting if we haven't yet
     if (!hasSpokenGreeting) {
       setHasSpokenGreeting(true);
       speak(INITIAL_GREETING);
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim() || isLoading) return;
+  const sendChatMessage = async (text: string) => {
+    if (!text.trim() || isLoading) return;
+    
+    unlockAudio();
 
-    const userMessage = input.trim();
+    const userMessage = text.trim();
     setInput("");
     
     const newMessages: Message[] = [...messages, { role: "user", content: userMessage }];
@@ -142,6 +163,11 @@ export default function ChatWidget() {
     }
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    sendChatMessage(input);
+  };
+
   return (
     <>
       {/* 3D Animated Floating Button */}
@@ -158,7 +184,7 @@ export default function ChatWidget() {
           aria-label="Open chat"
         >
           {/* 3D Glass Shine Effect */}
-          <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/40 to-transparent rounded-t-full"></div>
+          <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/40 to-transparent rounded-t-full pointer-events-none"></div>
           
           <Bot className="w-8 h-8 relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]" />
           
@@ -183,7 +209,7 @@ export default function ChatWidget() {
                   <Bot className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-heading font-semibold text-sm">Sarah - AB Fencing</h3>
+                  <h3 className="font-heading font-semibold text-sm">Sarah - AB Fencing Ltd</h3>
                   <p className="text-xs text-white/70">Virtual Assistant</p>
                 </div>
               </div>
@@ -231,6 +257,24 @@ export default function ChatWidget() {
               )}
               <div ref={messagesEndRef} />
             </div>
+
+            {/* Quick Prompts Area */}
+            {messages.length === 1 && (
+              <div className="px-4 py-3 bg-white border-t border-gray-100">
+                <p className="text-xs text-gray-500 mb-2 font-medium">Frequently asked:</p>
+                <div className="flex flex-wrap gap-2">
+                  {PRESET_PROMPTS.map((prompt, i) => (
+                    <button
+                      key={i}
+                      onClick={() => sendChatMessage(prompt)}
+                      className="text-left px-3 py-1.5 bg-gray-50 hover:bg-primary-light hover:text-white text-gray-700 text-xs rounded-full transition-colors border border-gray-200"
+                    >
+                      {prompt}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Input Area */}
             <div className="p-4 bg-white border-t border-gray-100">

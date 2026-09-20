@@ -2,7 +2,7 @@ export default function LocalBusinessSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "AB Fencing",
+    "name": "AB Fencing Ltd",
     "image": "https://abfencing.co.uk/logo.png",
     "url": "https://abfencing.co.uk",
     "telephone": "07539490180",
