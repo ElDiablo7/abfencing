@@ -250,7 +250,7 @@ export default function QuotePage() {
                       type="tel" 
                       {...register("phone")}
                       className={`w-full p-4 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all ${errors.phone ? 'border-red-500' : 'border-gray-200'}`}
-                      placeholder="07000 000 000"
+                      placeholder="07539 490 180"
                     />
                     {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>}
                   </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 export default function Footer() {
@@ -11,12 +12,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-primary-dark font-heading font-bold text-xl">
-                AB
-              </div>
-              <span className="font-heading font-bold text-xl tracking-tight text-white">
-                FENCING
-              </span>
+              <Image
+                src="/logo.svg"
+                alt="AB Fencing"
+                width={130}
+                height={48}
+                className="brightness-0 invert"
+              />
             </div>
             <p className="text-sm mt-2 max-w-xs">
               Family-run fencing and landscaping contractor based in Wallington. Over 20 years of experience delivering quality workmanship.
@@ -71,7 +73,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-accent shrink-0" />
-                <a href="tel:+447000000000" className="hover:text-white transition-colors">07000 000 000</a>
+                <a href="tel:+447539490180" className="hover:text-white transition-colors">07539 490 180</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-accent shrink-0" />

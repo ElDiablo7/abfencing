@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     
     return NextResponse.json({ 
       success: true, 
-      response: "Thanks for your message! This is a placeholder AI response. Please contact Scott on 07000 000 000 for immediate assistance." 
+      response: "Thanks for your message! This is a placeholder AI response. Please contact Scott on 07539 490 180 for immediate assistance." 
     }, { status: 200 });
   } catch (error) {
     console.error("Error processing chat:", error);

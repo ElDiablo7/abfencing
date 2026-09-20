@@ -10,19 +10,19 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#1B4332",
-          light: "#2D6A4F",
-          dark: "#143327",
-          50: "#E8F5EE",
-          100: "#C5E6D3",
-          200: "#9ED4B5",
-          300: "#74C196",
-          400: "#4DAE78",
-          500: "#2D6A4F",
-          600: "#1B4332",
-          700: "#143327",
-          800: "#0D221A",
-          900: "#06110D",
+          DEFAULT: "#1E3A7B",
+          light: "#2B4FA3",
+          dark: "#152C5E",
+          50: "#E8EEF8",
+          100: "#C5D3EC",
+          200: "#9EB5DE",
+          300: "#7497D0",
+          400: "#4A79C2",
+          500: "#2B4FA3",
+          600: "#1E3A7B",
+          700: "#152C5E",
+          800: "#0D1E41",
+          900: "#061024",
         },
         accent: {
           DEFAULT: "#D4A843",
@@ -72,7 +72,7 @@ const config: Config = {
       },
       backgroundImage: {
         "hero-gradient":
-          "linear-gradient(135deg, #1B4332 0%, #2D6A4F 50%, #143327 100%)",
+          "linear-gradient(135deg, #1E3A7B 0%, #2B4FA3 50%, #152C5E 100%)",
         "cta-gradient":
           "linear-gradient(135deg, #D4A843 0%, #B8922F 100%)",
       },

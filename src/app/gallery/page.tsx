@@ -8,12 +8,12 @@ export const metadata: Metadata = {
 };
 
 const images = [
-  { src: "https://images.unsplash.com/photo-1510006851064-e6056cd0e3a8?q=80&w=800&auto=format&fit=crop", alt: "New closeboard fencing" },
-  { src: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop", alt: "Garden landscaping" },
-  { src: "https://images.unsplash.com/photo-1505086810237-76df27f8cc3d?q=80&w=800&auto=format&fit=crop", alt: "Decking installation" },
-  { src: "https://images.unsplash.com/photo-1628186419747-d5a86dce8f9c?q=80&w=800&auto=format&fit=crop", alt: "Fence repairs" },
-  { src: "https://images.unsplash.com/photo-1588622153215-613d9691dfcc?q=80&w=800&auto=format&fit=crop", alt: "Custom timber gate" },
-  { src: "https://images.unsplash.com/photo-1592424041738-9cb57c07e05e?q=80&w=800&auto=format&fit=crop", alt: "Fresh turf laying" },
+  { src: "/images/gallery-fencing.jpg", alt: "New closeboard fencing" },
+  { src: "/images/gallery-landscaping.jpg", alt: "Garden landscaping" },
+  { src: "/images/gallery-decking.jpg", alt: "Decking installation" },
+  { src: "/images/gallery-repairs.jpg", alt: "Fence repairs" },
+  { src: "/images/gallery-gate.jpg", alt: "Custom timber gate" },
+  { src: "/images/gallery-picket.jpg", alt: "Picket fencing" },
 ];
 
 export default function GalleryPage() {

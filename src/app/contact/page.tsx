@@ -73,7 +73,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-heading font-bold text-charcoal mb-1">Call Scott</h3>
-                  <a href="tel:+447000000000" className="text-gray-600 hover:text-primary transition-colors text-lg">07000 000 000</a>
+                  <a href="tel:+447539490180" className="text-gray-600 hover:text-primary transition-colors text-lg">07539 490 180</a>
                 </div>
               </div>
 

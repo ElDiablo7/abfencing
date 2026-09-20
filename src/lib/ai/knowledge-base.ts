@@ -3,7 +3,7 @@ import { services } from "@/lib/data/services";
 export const businessInfo = {
   name: "AB Fencing",
   owner: "Scott Cannon",
-  phone: "07000 000 000",
+  phone: "07539 490 180",
   email: "info@abfencing.co.uk",
   location: "Wallington, Surrey",
   serviceAreas: ["Wallington", "Sutton", "Croydon", "Carshalton", "South London"],

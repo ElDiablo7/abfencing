@@ -88,7 +88,7 @@ export default function ServiceDetail({ params }: { params: { slug: string } }) 
                 <Link href="/quote" className="btn-primary w-full py-4 text-lg">
                   Get a Quote
                 </Link>
-                <a href="tel:+447000000000" className="btn-outline w-full py-4 text-lg">
+                <a href="tel:+447539490180" className="btn-outline w-full py-4 text-lg">
                   Call Scott Now
                 </a>
               </div>

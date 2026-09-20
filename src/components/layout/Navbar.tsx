@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -33,13 +34,14 @@ export default function Navbar() {
     >
       <div className="container-max px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 z-50">
-          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-heading font-bold text-xl">
-            AB
-          </div>
-          <span className="font-heading font-bold text-xl tracking-tight text-primary-dark">
-            FENCING
-          </span>
+        <Link href="/" className="flex items-center z-50">
+          <Image
+            src="/logo.svg"
+            alt="AB Fencing"
+            width={140}
+            height={52}
+            priority
+          />
         </Link>
 
         {/* Desktop Nav */}
@@ -58,11 +60,11 @@ export default function Navbar() {
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-4">
           <a
-            href="tel:+447000000000"
+            href="tel:+447539490180"
             className="flex items-center gap-2 text-primary font-semibold hover:text-primary-dark transition-colors"
           >
             <Phone className="w-5 h-5" />
-            <span className="hidden lg:inline">07000 000 000</span>
+            <span className="hidden lg:inline">07539 490 180</span>
           </a>
           <Link href="/quote" className="btn-primary py-2 px-5 text-sm">
             Get a Quote
@@ -100,7 +102,7 @@ export default function Navbar() {
             ))}
             <div className="mt-4 flex flex-col gap-4">
               <a
-                href="tel:+447000000000"
+                href="tel:+447539490180"
                 className="flex items-center justify-center gap-2 p-4 bg-gray-50 rounded-xl text-primary font-bold text-lg"
               >
                 <Phone className="w-5 h-5" />

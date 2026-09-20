@@ -10,7 +10,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         {/* We'll use a placeholder image for now, later to be replaced by actual client photos */}
         <Image 
-          src="https://images.unsplash.com/photo-1588622153215-613d9691dfcc?q=80&w=2070&auto=format&fit=crop"
+          src="/images/hero-fence.jpg"
           alt="Professional Fencing Installation"
           fill
           className="object-cover object-center"
@@ -32,7 +32,7 @@ export default function Home() {
             <Link href="/quote" className="btn-accent w-full sm:w-auto text-lg py-4 px-8">
               Get Your Free Quote
             </Link>
-            <a href="tel:+447000000000" className="btn-outline border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto text-lg py-4 px-8">
+            <a href="tel:+447539490180" className="btn-outline border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto text-lg py-4 px-8">
               Call Scott Now
             </a>
           </div>
@@ -70,7 +70,7 @@ export default function Home() {
             {/* Service 1 */}
             <div className="card group">
               <div className="h-48 relative overflow-hidden bg-gray-200">
-                <Image src="https://images.unsplash.com/photo-1510006851064-e6056cd0e3a8?q=80&w=2070&auto=format&fit=crop" alt="Fencing" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Image src="/images/gallery-fencing.jpg" alt="Fencing" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-heading font-bold mb-3 text-primary-dark">New Fencing</h3>
@@ -84,7 +84,7 @@ export default function Home() {
             {/* Service 2 */}
             <div className="card group">
               <div className="h-48 relative overflow-hidden bg-gray-200">
-                <Image src="https://images.unsplash.com/photo-1628186419747-d5a86dce8f9c?q=80&w=2070&auto=format&fit=crop" alt="Repairs" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Image src="/images/gallery-repairs.jpg" alt="Repairs" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-heading font-bold mb-3 text-primary-dark">Repairs & Maintenance</h3>
@@ -98,7 +98,7 @@ export default function Home() {
             {/* Service 3 */}
             <div className="card group">
               <div className="h-48 relative overflow-hidden bg-gray-200">
-                <Image src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop" alt="Landscaping" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Image src="/images/gallery-landscaping.jpg" alt="Landscaping" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-heading font-bold mb-3 text-primary-dark">Landscaping</h3>

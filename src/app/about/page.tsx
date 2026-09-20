@@ -26,8 +26,8 @@ export default function AboutPage() {
             <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
               {/* Replace with actual team/van photo */}
               <Image 
-                src="https://images.unsplash.com/photo-1574359411659-15573a27fd0c?q=80&w=2070&auto=format&fit=crop" 
-                alt="AB Fencing Work" 
+                src="/images/about-team.jpg" 
+                alt="AB Fencing Team at Work" 
                 fill 
                 className="object-cover"
               />

@@ -7,7 +7,7 @@ export const services = [
     title: "New Fencing",
     description: "High-quality closeboard, panel, and picket fencing installed to last against the British weather.",
     icon: ShieldCheck,
-    image: "https://images.unsplash.com/photo-1510006851064-e6056cd0e3a8?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/gallery-fencing.jpg",
     features: [
       "Closeboard & Featheredge Fencing",
       "Traditional Panel Fencing",
@@ -23,7 +23,7 @@ export const services = [
     title: "Repairs & Maintenance",
     description: "Storm damage? Rotten posts? We provide rapid repair services to secure your property.",
     icon: Wrench,
-    image: "https://images.unsplash.com/photo-1628186419747-d5a86dce8f9c?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/gallery-repairs.jpg",
     features: [
       "Storm Damage Repair",
       "Post Replacement (Spur Posts)",
@@ -39,7 +39,7 @@ export const services = [
     title: "Landscaping",
     description: "Complete garden clearance, turfing, and hard landscaping to create your perfect outdoor space.",
     icon: Trees,
-    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/gallery-landscaping.jpg",
     features: [
       "Garden Clearance",
       "Hedge Removal",
@@ -55,7 +55,7 @@ export const services = [
     title: "Decking",
     description: "Beautiful timber and composite decking solutions for outdoor dining and entertaining.",
     icon: Square,
-    image: "https://images.unsplash.com/photo-1505086810237-76df27f8cc3d?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/gallery-decking.jpg",
     features: [
       "Softwood & Hardwood Decking",
       "Composite Decking",
@@ -71,7 +71,7 @@ export const services = [
     title: "Gates",
     description: "Custom built timber gates to match your fencing, providing security and easy access.",
     icon: Hammer,
-    image: "https://images.unsplash.com/photo-1588622153215-613d9691dfcc?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/gallery-gate.jpg",
     features: [
       "Side Entrance Gates",
       "Driveway Gates",
@@ -87,7 +87,7 @@ export const services = [
     title: "Turfing",
     description: "Professional lawn replacement with high-quality turf for an instant green transformation.",
     icon: Leaf,
-    image: "https://images.unsplash.com/photo-1592424041738-9cb57c07e05e?q=80&w=2059&auto=format&fit=crop",
+    image: "/images/gallery-picket.jpg",
     features: [
       "Old Lawn Removal",
       "Soil Preparation & Levelling",

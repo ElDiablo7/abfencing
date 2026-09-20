@@ -5,7 +5,7 @@ export default function LocalBusinessSchema() {
     "name": "AB Fencing",
     "image": "https://abfencing.co.uk/logo.png",
     "url": "https://abfencing.co.uk",
-    "telephone": "07000000000",
+    "telephone": "07539490180",
     "email": "info@abfencing.co.uk",
     "address": {
       "@type": "PostalAddress",
