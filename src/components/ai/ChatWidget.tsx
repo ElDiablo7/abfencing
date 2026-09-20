@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { X, Send, User, Bot, Loader2, Volume2, VolumeX } from "lucide-react";
+import { X, Send, User, Bot, Loader2, Volume2, VolumeX, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 type Message = {
@@ -27,6 +27,7 @@ export default function ChatWidget() {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isVoiceEnabled, setIsVoiceEnabled] = useState(true);
   const [hasSpokenGreeting, setHasSpokenGreeting] = useState(false);
   
@@ -258,38 +259,60 @@ export default function ChatWidget() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Quick Prompts Area */}
-            {messages.length === 1 && (
-              <div className="px-4 py-3 bg-white border-t border-gray-100">
-                <p className="text-xs text-gray-500 mb-2 font-medium">Frequently asked:</p>
-                <div className="flex flex-wrap gap-2">
-                  {PRESET_PROMPTS.map((prompt, i) => (
-                    <button
-                      key={i}
-                      onClick={() => sendChatMessage(prompt)}
-                      className="text-left px-3 py-1.5 bg-gray-50 hover:bg-primary-light hover:text-white text-gray-700 text-xs rounded-full transition-colors border border-gray-200"
-                    >
-                      {prompt}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
+            {/* Input Area with Dropdown */}
+            <div className="p-4 bg-white border-t border-gray-100 relative">
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute bottom-full left-4 mb-2 w-[calc(100%-2rem)] bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden z-10"
+                  >
+                    <div className="bg-gray-50 px-3 py-2 border-b border-gray-100">
+                      <p className="text-xs font-semibold text-gray-500">Quick Questions</p>
+                    </div>
+                    <div className="max-h-[200px] overflow-y-auto">
+                      {PRESET_PROMPTS.map((prompt, i) => (
+                        <button
+                          key={i}
+                          type="button"
+                          onClick={() => {
+                            setIsDropdownOpen(false);
+                            sendChatMessage(prompt);
+                          }}
+                          className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-primary-light hover:text-white transition-colors border-b border-gray-50 last:border-0"
+                        >
+                          {prompt}
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-            {/* Input Area */}
-            <div className="p-4 bg-white border-t border-gray-100">
-              <form onSubmit={handleSubmit} className="flex gap-2">
+              <form onSubmit={handleSubmit} className="flex gap-2 relative z-20">
+                <button
+                  type="button"
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors shrink-0 ${isDropdownOpen ? 'bg-primary text-white shadow-md' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
+                  title="Quick Questions"
+                >
+                  <Sparkles className="w-5 h-5" />
+                </button>
                 <input
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
+                  onFocus={() => setIsDropdownOpen(false)}
                   placeholder="Reply to Sarah..."
-                  className="flex-1 px-4 py-2 bg-gray-100 border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-sm"
+                  className="flex-1 px-4 py-2 bg-gray-100 border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-sm min-w-0"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim() || isLoading}
-                  className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary-dark transition-colors"
+                  className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center shrink-0 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary-dark transition-colors"
                   aria-label="Send message"
                 >
                   <Send className="w-4 h-4 ml-0.5" />
