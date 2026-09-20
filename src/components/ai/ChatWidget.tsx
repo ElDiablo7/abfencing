@@ -9,7 +9,7 @@ type Message = {
   content: string;
 };
 
-const INITIAL_GREETING = "Hello! I'm Sarah, the virtual assistant for AB Fencing. How can I be of assistance to you today?";
+const INITIAL_GREETING = "Hello! I'm Sarah, the virtual assistant for AB Fencing. I can help you arrange a free quote, answer questions about our services, or put you directly in touch with Scott. How can I assist you today?";
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,6 +30,23 @@ export default function ChatWidget() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Auto-open chat after 2 seconds on initial load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+      setHasSpokenGreeting(prev => {
+        if (!prev) {
+          // Attempt to speak (may be blocked by browser if no user interaction yet)
+          setTimeout(() => speak(INITIAL_GREETING), 300);
+          return true;
+        }
+        return prev;
+      });
+    }, 2000);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Ensure voices are loaded (some browsers load them asynchronously)
   useEffect(() => {
