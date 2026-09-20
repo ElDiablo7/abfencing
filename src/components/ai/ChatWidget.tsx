@@ -144,13 +144,28 @@ export default function ChatWidget() {
 
   return (
     <>
-      <button
-        onClick={handleOpen}
-        className={`fixed bottom-6 right-6 z-40 p-4 bg-primary text-white rounded-full shadow-xl hover:scale-110 hover:shadow-2xl transition-all duration-300 ${isOpen ? 'hidden' : 'block'}`}
-        aria-label="Open chat"
-      >
-        <MessageCircle className="w-7 h-7" />
-      </button>
+      {/* 3D Animated Floating Button */}
+      <div className={`fixed bottom-6 right-6 z-40 ${isOpen ? 'hidden' : 'block'}`}>
+        {/* Pulsing attention beacon */}
+        <div className="absolute inset-0 bg-primary/60 rounded-full animate-ping" style={{ animationDuration: '2s' }}></div>
+        
+        <motion.button
+          onClick={handleOpen}
+          animate={{ y: [0, -12, 0] }}
+          transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+          whileHover={{ scale: 1.1, rotate: [0, -10, 10, -10, 0] }}
+          className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#6B9FE8] via-primary to-[#0D1E41] text-white border border-white/30 shadow-[0_12px_25px_rgba(30,58,123,0.6),_inset_0_-5px_12px_rgba(0,0,0,0.5),_inset_0_5px_12px_rgba(255,255,255,0.6)] cursor-pointer overflow-hidden"
+          aria-label="Open chat"
+        >
+          {/* 3D Glass Shine Effect */}
+          <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/40 to-transparent rounded-t-full"></div>
+          
+          <Bot className="w-8 h-8 relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]" />
+          
+          {/* Notification Dot */}
+          <div className="absolute top-3 right-3 w-3.5 h-3.5 bg-red-500 rounded-full border-2 border-primary-dark shadow-sm"></div>
+        </motion.button>
+      </div>
 
       <AnimatePresence>
         {isOpen && (
