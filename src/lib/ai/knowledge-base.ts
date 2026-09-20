@@ -4,7 +4,7 @@ export const businessInfo = {
   name: "AB Fencing",
   owner: "Scott Cannon",
   phone: "07539 490 180",
-  email: "info@abfencing.co.uk",
+  email: "abfencingltd@gmail.com",
   location: "Wallington, Surrey",
   serviceAreas: ["Wallington", "Sutton", "Croydon", "Carshalton", "South London"],
   experience: "Over 20 years",

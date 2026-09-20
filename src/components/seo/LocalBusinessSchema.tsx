@@ -6,7 +6,7 @@ export default function LocalBusinessSchema() {
     "image": "https://abfencing.co.uk/logo.png",
     "url": "https://abfencing.co.uk",
     "telephone": "07539490180",
-    "email": "info@abfencing.co.uk",
+    "email": "abfencingltd@gmail.com",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Wallington",

@@ -83,7 +83,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-heading font-bold text-charcoal mb-1">Email Us</h3>
-                  <a href="mailto:info@abfencing.co.uk" className="text-gray-600 hover:text-primary transition-colors text-lg">info@abfencing.co.uk</a>
+                  <a href="mailto:abfencingltd@gmail.com" className="text-gray-600 hover:text-primary transition-colors text-lg">abfencingltd@gmail.com</a>
                 </div>
               </div>
 
