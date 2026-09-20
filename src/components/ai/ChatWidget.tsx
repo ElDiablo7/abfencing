@@ -71,8 +71,8 @@ export default function ChatWidget() {
       utterance.voice = selectedVoice;
     }
     
-    utterance.rate = 0.95; // Slightly slower for a more natural conversational pace
-    utterance.pitch = 1.0; // Reset pitch to 1.0 so Google UK Female sounds exactly as intended
+    utterance.rate = 1.11;
+    utterance.pitch = 1.19;
     
     window.speechSynthesis.speak(utterance);
   };
