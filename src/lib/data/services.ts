@@ -1,4 +1,4 @@
-import { ShieldCheck, Hammer, Trees, Square, Wrench, Leaf } from "lucide-react";
+import { ShieldCheck, Hammer, Wrench } from "lucide-react";
 
 export const services = [
   {
@@ -34,38 +34,6 @@ export const services = [
     priceGuide: "Quoted per job",
   },
   {
-    id: "landscaping",
-    slug: "landscaping",
-    title: "Landscaping",
-    description: "Complete garden clearance, turfing, and hard landscaping to create your perfect outdoor space.",
-    icon: Trees,
-    image: "/images/gallery-landscaping.jpg",
-    features: [
-      "Garden Clearance",
-      "Hedge Removal",
-      "Sleeper Beds & Retaining Walls",
-      "Patio & Slabbing",
-      "General Garden Makeovers",
-    ],
-    priceGuide: "Free site survey required",
-  },
-  {
-    id: "decking",
-    slug: "decking",
-    title: "Decking",
-    description: "Beautiful timber and composite decking solutions for outdoor dining and entertaining.",
-    icon: Square,
-    image: "/images/gallery-decking.jpg",
-    features: [
-      "Softwood & Hardwood Decking",
-      "Composite Decking",
-      "Balustrades & Handrails",
-      "Deck Repairs",
-      "Custom Deck Design",
-    ],
-    priceGuide: "From £90 per sqm",
-  },
-  {
     id: "gates",
     slug: "gates",
     title: "Gates",
@@ -80,21 +48,5 @@ export const services = [
       "Matching Fence Styles",
     ],
     priceGuide: "From £150 per gate",
-  },
-  {
-    id: "turfing",
-    slug: "turfing",
-    title: "Turfing",
-    description: "Professional lawn replacement with high-quality turf for an instant green transformation.",
-    icon: Leaf,
-    image: "/images/gallery-picket.jpg",
-    features: [
-      "Old Lawn Removal",
-      "Soil Preparation & Levelling",
-      "Premium Turf Laying",
-      "First Watering",
-      "Aftercare Advice",
-    ],
-    priceGuide: "From £15 per sqm",
   },
 ];

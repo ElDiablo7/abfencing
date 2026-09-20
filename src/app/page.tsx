@@ -13,7 +13,7 @@ export default function Home() {
           src="/images/hero-fence.jpg"
           alt="Professional Fencing Installation"
           fill
-          className="object-cover object-center"
+          className="object-contain object-center"
           priority
         />
         
@@ -98,12 +98,12 @@ export default function Home() {
             {/* Service 3 */}
             <div className="card group">
               <div className="h-48 relative overflow-hidden bg-gray-200">
-                <Image src="/images/gallery-landscaping.jpg" alt="Landscaping" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Image src="/images/gallery-gate.jpg" alt="Gates" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-heading font-bold mb-3 text-primary-dark">Landscaping</h3>
-                <p className="text-gray-600 mb-4 line-clamp-2">Complete garden clearance, turfing, and hard landscaping to create your perfect outdoor space.</p>
-                <Link href="/services/landscaping" className="text-primary font-semibold hover:text-primary-dark inline-flex items-center gap-1">
+                <h3 className="text-xl font-heading font-bold mb-3 text-primary-dark">Gates</h3>
+                <p className="text-gray-600 mb-4 line-clamp-2">Custom built timber gates to match your fencing, providing security and easy access.</p>
+                <Link href="/services/gates" className="text-primary font-semibold hover:text-primary-dark inline-flex items-center gap-1">
                   Learn more &rarr;
                 </Link>
               </div>

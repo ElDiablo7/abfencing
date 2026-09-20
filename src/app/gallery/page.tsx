@@ -9,8 +9,6 @@ export const metadata: Metadata = {
 
 const images = [
   { src: "/images/gallery-fencing.jpg", alt: "New closeboard fencing" },
-  { src: "/images/gallery-landscaping.jpg", alt: "Garden landscaping" },
-  { src: "/images/gallery-decking.jpg", alt: "Decking installation" },
   { src: "/images/gallery-repairs.jpg", alt: "Fence repairs" },
   { src: "/images/gallery-gate.jpg", alt: "Custom timber gate" },
   { src: "/images/gallery-picket.jpg", alt: "Picket fencing" },
