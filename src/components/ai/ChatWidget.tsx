@@ -46,23 +46,33 @@ export default function ChatWidget() {
     const utterance = new SpeechSynthesisUtterance(text);
     const voices = window.speechSynthesis.getVoices();
     
-    // Prioritize high-quality UK Female voices commonly found on Windows/Mac/Android/Chrome
-    const ukFemale = voices.find(v => 
-      (v.lang === 'en-GB' && (v.name.includes('Female') || v.name.includes('Hazel') || v.name.includes('Serena') || v.name.includes('Fiona'))) ||
-      v.name === 'Google UK English Female'
-    );
+    // 1. Absolute top priority: Google UK English Female (Chrome's natural cloud voice)
+    let selectedVoice = voices.find(v => v.name === 'Google UK English Female');
     
-    // Fallback to any UK English voice
-    const anyUk = voices.find(v => v.lang === 'en-GB' || v.lang === 'en_GB');
+    // 2. Second priority: Edge's highly realistic Azure Neural voices
+    if (!selectedVoice) {
+      selectedVoice = voices.find(v => v.lang === 'en-GB' && v.name.includes('Natural') && v.name.includes('Female'));
+    }
     
-    if (ukFemale) {
-      utterance.voice = ukFemale;
-    } else if (anyUk) {
-      utterance.voice = anyUk;
+    // 3. Third priority: Apple's Premium/Enhanced female voices
+    if (!selectedVoice) {
+      selectedVoice = voices.find(v => v.lang === 'en-GB' && (v.name.includes('Premium') || v.name.includes('Enhanced')) && v.name.includes('Female'));
+    }
+    
+    // 4. Fallbacks (avoiding Hazel if possible)
+    if (!selectedVoice) {
+      selectedVoice = voices.find(v => v.lang === 'en-GB' && v.name.includes('Female') && !v.name.includes('Hazel'));
+    }
+    if (!selectedVoice) {
+      selectedVoice = voices.find(v => v.lang === 'en-GB' || v.lang === 'en_GB');
+    }
+    
+    if (selectedVoice) {
+      utterance.voice = selectedVoice;
     }
     
     utterance.rate = 0.95; // Slightly slower for a more natural conversational pace
-    utterance.pitch = 1.05; // Slightly higher pitch for a friendly female tone
+    utterance.pitch = 1.0; // Reset pitch to 1.0 so Google UK Female sounds exactly as intended
     
     window.speechSynthesis.speak(utterance);
   };
