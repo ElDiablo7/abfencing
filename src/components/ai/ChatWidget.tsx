@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, User, Bot, Loader2 } from "lucide-react";
+import { MessageCircle, X, Send, User, Bot, Loader2, Volume2, VolumeX } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 type Message = {
@@ -9,13 +9,18 @@ type Message = {
   content: string;
 };
 
+const INITIAL_GREETING = "Hello! I'm Sarah, the virtual assistant for AB Fencing. How can I be of assistance to you today?";
+
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", content: "Hi! I'm the AB Fencing virtual assistant. How can I help you today?" }
+    { role: "assistant", content: INITIAL_GREETING }
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isVoiceEnabled, setIsVoiceEnabled] = useState(true);
+  const [hasSpokenGreeting, setHasSpokenGreeting] = useState(false);
+  
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -26,6 +31,51 @@ export default function ChatWidget() {
     scrollToBottom();
   }, [messages]);
 
+  // Ensure voices are loaded (some browsers load them asynchronously)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.getVoices();
+    }
+  }, []);
+
+  const speak = (text: string) => {
+    if (!isVoiceEnabled || typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+    
+    window.speechSynthesis.cancel(); // Stop current speaking
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    const voices = window.speechSynthesis.getVoices();
+    
+    // Prioritize high-quality UK Female voices commonly found on Windows/Mac/Android/Chrome
+    const ukFemale = voices.find(v => 
+      (v.lang === 'en-GB' && (v.name.includes('Female') || v.name.includes('Hazel') || v.name.includes('Serena') || v.name.includes('Fiona'))) ||
+      v.name === 'Google UK English Female'
+    );
+    
+    // Fallback to any UK English voice
+    const anyUk = voices.find(v => v.lang === 'en-GB' || v.lang === 'en_GB');
+    
+    if (ukFemale) {
+      utterance.voice = ukFemale;
+    } else if (anyUk) {
+      utterance.voice = anyUk;
+    }
+    
+    utterance.rate = 0.95; // Slightly slower for a more natural conversational pace
+    utterance.pitch = 1.05; // Slightly higher pitch for a friendly female tone
+    
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const handleOpen = () => {
+    setIsOpen(true);
+    // Speak the greeting if we haven't yet, and if the user interacts (browsers require interaction first)
+    if (!hasSpokenGreeting) {
+      setHasSpokenGreeting(true);
+      speak(INITIAL_GREETING);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
@@ -33,7 +83,6 @@ export default function ChatWidget() {
     const userMessage = input.trim();
     setInput("");
     
-    // Add user message to state
     const newMessages: Message[] = [...messages, { role: "user", content: userMessage }];
     setMessages(newMessages);
     setIsLoading(true);
@@ -51,11 +100,16 @@ export default function ChatWidget() {
       
       if (data.success) {
         setMessages([...newMessages, { role: "assistant", content: data.response }]);
+        speak(data.response);
       } else {
-        setMessages([...newMessages, { role: "assistant", content: "Sorry, I'm having trouble connecting right now." }]);
+        const errorMsg = "Sorry, I'm having trouble connecting right now.";
+        setMessages([...newMessages, { role: "assistant", content: errorMsg }]);
+        speak(errorMsg);
       }
     } catch {
-      setMessages([...newMessages, { role: "assistant", content: "An error occurred while sending your message." }]);
+      const errorMsg = "An error occurred while sending your message.";
+      setMessages([...newMessages, { role: "assistant", content: errorMsg }]);
+      speak(errorMsg);
     } finally {
       setIsLoading(false);
     }
@@ -63,16 +117,14 @@ export default function ChatWidget() {
 
   return (
     <>
-      {/* Floating Button */}
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={handleOpen}
         className={`fixed bottom-6 right-6 z-40 p-4 bg-primary text-white rounded-full shadow-xl hover:scale-110 hover:shadow-2xl transition-all duration-300 ${isOpen ? 'hidden' : 'block'}`}
         aria-label="Open chat"
       >
         <MessageCircle className="w-7 h-7" />
       </button>
 
-      {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -89,17 +141,27 @@ export default function ChatWidget() {
                   <Bot className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-heading font-semibold text-sm">AB Fencing Assistant</h3>
-                  <p className="text-xs text-white/70">Usually replies instantly</p>
+                  <h3 className="font-heading font-semibold text-sm">Sarah - AB Fencing</h3>
+                  <p className="text-xs text-white/70">Virtual Assistant</p>
                 </div>
               </div>
-              <button 
-                onClick={() => setIsOpen(false)}
-                className="text-white/80 hover:text-white transition-colors"
-                aria-label="Close chat"
-              >
-                <X className="w-6 h-6" />
-              </button>
+              <div className="flex items-center gap-1">
+                <button 
+                  onClick={() => setIsVoiceEnabled(!isVoiceEnabled)}
+                  className="p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-colors"
+                  aria-label={isVoiceEnabled ? "Disable voice" : "Enable voice"}
+                  title={isVoiceEnabled ? "Disable voice" : "Enable voice"}
+                >
+                  {isVoiceEnabled ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
+                </button>
+                <button 
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-colors"
+                  aria-label="Close chat"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
             </div>
 
             {/* Messages Area */}
@@ -121,7 +183,7 @@ export default function ChatWidget() {
                   </div>
                   <div className="bg-white text-gray-500 p-3 rounded-2xl rounded-tl-none border border-gray-100 shadow-sm flex items-center gap-2">
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span className="text-xs">Typing...</span>
+                    <span className="text-xs">Sarah is typing...</span>
                   </div>
                 </div>
               )}
@@ -135,7 +197,7 @@ export default function ChatWidget() {
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask a question..."
+                  placeholder="Reply to Sarah..."
                   className="flex-1 px-4 py-2 bg-gray-100 border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-sm"
                 />
                 <button
