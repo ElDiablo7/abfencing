@@ -5,7 +5,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About Us | AB Fencing",
-  description: "Learn about AB Fencing, a family-run fencing and landscaping business in Wallington with over 20 years of experience.",
+  description: "Learn about AB Fencing, a family-run fencing business in Wallington with over 20 years of experience serving the Southeast.",
 };
 
 export default function AboutPage() {
@@ -46,7 +46,7 @@ export default function AboutPage() {
             </h2>
             <div className="prose prose-lg text-gray-700 mb-8">
               <p>
-                Based in Wallington, AB Fencing has been transforming gardens and securing properties across South London for over two decades. What started as a small operation has grown into a highly trusted local service, completely driven by word-of-mouth recommendations and a commitment to quality.
+                Based in Wallington, AB Fencing has been securing properties and enhancing boundaries across the Southeast for over two decades. What started as a small operation has grown into a highly trusted local service, completely driven by word-of-mouth recommendations and a commitment to quality.
               </p>
               <p>
                 Led by Scott, our team understands that a fence isn&apos;t just a boundary—it&apos;s privacy, security, and a backdrop to your family&apos;s outdoor life. We pride ourselves on honest pricing, turning up when we say we will, and leaving your garden cleaner than we found it.

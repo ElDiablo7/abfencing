@@ -7,9 +7,9 @@ import ChatWidget from "@/components/ai/ChatWidget";
 import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 
 export const metadata: Metadata = {
-  title: "AB Fencing | Professional Fencing & Landscaping in Wallington",
-  description: "Family-run fencing and landscaping contractor based in Wallington with over 20 years of experience. We provide high-quality fence installation, repairs, and landscaping services.",
-  keywords: ["Fencing", "Landscaping", "Wallington", "Fence Installation", "Fence Repairs", "Sutton", "Croydon", "Garden Fencing"],
+  title: "AB Fencing | Professional Fencing in Wallington & the Southeast",
+  description: "Family-run fencing contractor based in Wallington with over 20 years of experience. We provide high-quality fence installation, repairs, and gate services.",
+  keywords: ["Fencing", "Wallington", "Fence Installation", "Fence Repairs", "Sutton", "Croydon", "Banstead", "Epsom", "Reigate", "Dorking", "Redhill"],
 };
 
 export default function RootLayout({

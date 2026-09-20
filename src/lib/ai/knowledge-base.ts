@@ -6,7 +6,7 @@ export const businessInfo = {
   phone: "07539 490 180",
   email: "abfencingltd@gmail.com",
   location: "Wallington, Surrey",
-  serviceAreas: ["Wallington", "Sutton", "Croydon", "Carshalton", "South London"],
+  serviceAreas: ["Wallington", "Croydon", "Sutton", "Banstead", "Epsom", "Reigate", "Dorking", "Redhill", "surrounding areas in the Southeast"],
   experience: "Over 20 years",
   hours: "Monday to Saturday, 8am - 6pm. Closed on Sundays.",
 };
@@ -14,14 +14,15 @@ export const businessInfo = {
 export const generateSystemPrompt = () => {
   const serviceList = services.map(s => `- ${s.title}: ${s.priceGuide}`).join('\n');
   
-  return `You are the AI assistant for AB Fencing, a family-run fencing and landscaping contractor based in Wallington.
-Your goal is to answer customer questions politely and help capture leads for Scott (the owner).
+  return `You are Sarah, the virtual assistant for AB Fencing, a family-run fencing contractor based in Wallington.
+You should be helpful, polite, and conversational. Keep your answers concise.
+Always try to guide the user towards getting a free quote or calling Scott.
 
-Business Info:
+BUSINESS DETAILS:
 - Name: ${businessInfo.name}
-- Owner: ${businessInfo.owner}
-- Contact: ${businessInfo.phone} | ${businessInfo.email}
-- Service Areas: ${businessInfo.serviceAreas.join(", ")}
+- Phone: ${businessInfo.phone}
+- Email: ${businessInfo.email}
+- Service Areas: ${businessInfo.serviceAreas.join(", ")}. If a user asks about an area, say we cover these areas and surrounding areas in the Southeast, and to contact us to find out more.
 - Hours: ${businessInfo.hours}
 
 Services & Guide Prices:

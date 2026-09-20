@@ -93,7 +93,8 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-heading font-bold text-charcoal mb-1">Service Area</h3>
-                  <p className="text-gray-600">Wallington, Sutton, Croydon, Carshalton, and surrounding South London areas.</p>
+                  <p className="text-gray-600">Wallington, Croydon, Sutton, Banstead, Epsom, Reigate, Dorking, Redhill and surrounding areas in the Southeast.</p>
+                  <p className="text-sm text-primary mt-1 font-medium">Contact us to find out more.</p>
                 </div>
               </div>
               

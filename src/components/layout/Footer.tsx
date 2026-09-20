@@ -21,7 +21,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-sm mt-2 max-w-xs">
-              Family-run fencing and landscaping contractor based in Wallington. Over 20 years of experience delivering quality workmanship.
+              Family-run fencing contractor based in Wallington. Over 20 years of experience delivering quality workmanship.
             </p>
             <div className="flex gap-4 mt-2">
               <a href="https://www.facebook.com/people/AB-Fencing/100069215696600/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" aria-label="Facebook">
@@ -66,7 +66,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                <span>Wallington, Surrey<br/>Covering South London</span>
+                <span>Wallington, Surrey<br/>Covering the Southeast</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-accent shrink-0" />
