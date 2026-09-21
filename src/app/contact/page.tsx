@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -32,9 +32,20 @@ export default function ContactPage() {
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
     try {
-      console.log("Submitting:", data);
-      // In a real app, POST to /api/leads
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // 1. Log lead to API in background
+      await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, source: "contact_form" }),
+      }).catch((err) => console.error("Error logging lead:", err));
+
+      // 2. Build WhatsApp deep link message formatted for Scott
+      const messageText = `Hi Scott, new website enquiry:\n\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Email:* ${data.email}\n*Postcode:* ${data.postcode}\n\n*Enquiry:* ${data.message}`;
+      const whatsappUrl = `https://wa.me/447539490180?text=${encodeURIComponent(messageText)}`;
+
+      // 3. Open WhatsApp chat directly
+      window.open(whatsappUrl, "_blank");
+
       setIsSuccess(true);
       reset();
       
@@ -42,7 +53,7 @@ export default function ContactPage() {
       setTimeout(() => setIsSuccess(false), 5000);
     } catch (error) {
       console.error(error);
-      alert("Failed to send message. Please call us instead.");
+      alert("Failed to open WhatsApp. Please call 07539 490 180 directly.");
     } finally {
       setIsSubmitting(false);
     }
@@ -108,12 +119,19 @@ export default function ContactPage() {
               </div>
             </div>
             
-            {/* Embedded Google Map Placeholder */}
-            <div className="w-full h-64 bg-gray-200 rounded-xl overflow-hidden relative">
-              {/* Note: In production, replace with actual Google Maps embed iframe */}
-              <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-medium bg-gray-100">
-                Map View (Wallington Area)
-              </div>
+            {/* Embedded Google Map */}
+            <div className="w-full h-72 sm:h-80 bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-sm relative">
+              <iframe
+                title="AB Fencing Service Area - Wallington & Surrounding Areas"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19918.423010729355!2d-0.1624647!3d51.3621453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876063eb70a9937%3A0xb3514a60eb2aa4b0!2sWallington!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+              />
             </div>
           </div>
 
@@ -186,8 +204,13 @@ export default function ContactPage() {
                   {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
                 </div>
 
-                <button type="submit" className="btn-primary py-4 text-lg mt-2" disabled={isSubmitting}>
-                  {isSubmitting ? "Sending..." : "Send Message"}
+                <button 
+                  type="submit" 
+                  className="w-full py-4 text-lg mt-2 font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] rounded-xl flex items-center justify-center gap-3 shadow-md hover:shadow-lg transition-all duration-300" 
+                  disabled={isSubmitting}
+                >
+                  <MessageCircle className="w-6 h-6 fill-current" />
+                  {isSubmitting ? "Opening WhatsApp..." : "Send to Scott's WhatsApp"}
                 </button>
               </form>
             </div>
